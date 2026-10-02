@@ -19,6 +19,10 @@ export default function Home() {
       <section className="intro">
         <h1>{site.tagline}</h1>
         {site.bio.map((p) => <p key={p}>{p}</p>)}
+        <p className="status">
+          <span className="status-dot" aria-hidden="true" />
+          {site.status} <Link to="/contact">Get in touch</Link> or see my <Link to="/resume">resume</Link>.
+        </p>
         <p className="links">
           {site.links.map((l) => <ExternalLink key={l.label} href={l.href}>{l.label} ↗</ExternalLink>)}
         </p>
