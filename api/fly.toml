@@ -1,12 +1,12 @@
-# Set `app` to a globally unique name before the first `fly launch`.
-app = "CHANGE-ME-personal-site-api"
+
+app = "personal-site-api-cadelaney3"
 primary_region = "sjc"
 
 [build]
 
 [env]
   # Comma-separated origins allowed to call the API (your GitHub Pages URL).
-  ALLOWED_ORIGINS = "https://CHANGE-ME.github.io"
+  ALLOWED_ORIGINS = "https://cadelaney3.github.io"
 
 [http_service]
   internal_port = 8080
