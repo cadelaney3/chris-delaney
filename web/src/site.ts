@@ -9,7 +9,7 @@ export const site = {
   ],
   links: [
     { label: 'GitHub', href: 'https://github.com/your-username' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-username' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cadelaney3/' },
     { label: 'Email', href: 'mailto:you@example.com' },
   ],
 }
