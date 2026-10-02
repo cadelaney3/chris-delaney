@@ -1,4 +1,5 @@
 import type { Project } from './site'
+import ExternalLink from './ExternalLink'
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -13,7 +14,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.tech.map((t) => <li key={t}>{t}</li>)}
         </ul>
         <span className="project-links">
-          {project.links.map((l) => <a key={l.label} href={l.href}>{l.label} ↗</a>)}
+          {project.links.map((l) => <ExternalLink key={l.label} href={l.href}>{l.label} ↗</ExternalLink>)}
         </span>
       </div>
     </article>

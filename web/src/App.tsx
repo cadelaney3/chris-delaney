@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { NavLink, Route, Routes, useLocation } from 'react-router'
 import { site } from './site'
+import ExternalLink from './ExternalLink'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Blog from './pages/Blog'
@@ -39,7 +40,7 @@ export default function App() {
       <footer className="site-footer">
         <span>© {year} {site.name}</span>
         <span className="footer-links">
-          {site.links.map((l) => <a key={l.label} href={l.href}>{l.label}</a>)}
+          {site.links.map((l) => <ExternalLink key={l.label} href={l.href}>{l.label}</ExternalLink>)}
         </span>
       </footer>
     </div>

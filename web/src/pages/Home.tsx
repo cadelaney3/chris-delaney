@@ -4,6 +4,7 @@ import { getPosts, formatDate, type PostMeta } from '../api'
 import { projects, site } from '../site'
 import { useTitle } from '../useTitle'
 import ProjectCard from '../ProjectCard'
+import ExternalLink from '../ExternalLink'
 
 export default function Home() {
   useTitle()
@@ -19,7 +20,7 @@ export default function Home() {
         <h1>{site.tagline}</h1>
         {site.bio.map((p) => <p key={p}>{p}</p>)}
         <p className="links">
-          {site.links.map((l) => <a key={l.label} href={l.href}>{l.label} ↗</a>)}
+          {site.links.map((l) => <ExternalLink key={l.label} href={l.href}>{l.label} ↗</ExternalLink>)}
         </p>
       </section>
 
