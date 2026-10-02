@@ -8,9 +8,9 @@ export const site = {
     'Currently exploring distributed systems and developer tooling. Outside of work you can find me reading, hiking, or tinkering with side projects.',
   ],
   links: [
-    { label: 'GitHub', href: 'https://github.com/your-username' },
+    { label: 'GitHub', href: 'https://github.com/cadelaney3' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cadelaney3/' },
-    { label: 'Email', href: 'mailto:you@example.com' },
+    { label: 'Email', href: 'mailto:cadelaney3@gmail.com' },
   ],
 }
 
