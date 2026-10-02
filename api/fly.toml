@@ -1,0 +1,32 @@
+# Set `app` to a globally unique name before the first `fly launch`.
+app = "CHANGE-ME-personal-site-api"
+primary_region = "sjc"
+
+[build]
+
+[env]
+  # Comma-separated origins allowed to call the API (your GitHub Pages URL).
+  ALLOWED_ORIGINS = "https://CHANGE-ME.github.io"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    method = "GET"
+    path = "/healthz"
+    interval = "30s"
+    timeout = "5s"
+
+# Persistent storage for contact-form messages.
+# Create once with: fly volumes create contact_data --size 1
+[mounts]
+  source = "contact_data"
+  destination = "/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
