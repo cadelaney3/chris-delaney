@@ -1,7 +1,7 @@
 // All personal content lives here. Edit this file to make the site yours.
 
 export const site = {
-  name: 'Your Name',
+  name: 'Chris Delaney',
   tagline: 'Software engineer building thoughtful things for the web.',
   bio: [
     "I'm a software engineer who enjoys working across the stack, from Go services to React interfaces. I care about simple systems, clear writing, and software that feels good to use.",
