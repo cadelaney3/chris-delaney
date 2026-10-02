@@ -1,4 +1,4 @@
-module personal-site/api
+module chris-delaney/api
 
 go 1.27.1
 

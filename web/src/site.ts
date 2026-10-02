@@ -27,7 +27,7 @@ export const projects: Project[] = [
     name: 'Personal site',
     description: 'This website: a React frontend on GitHub Pages backed by a Go API on Fly.io that serves Markdown posts and handles the contact form.',
     tech: ['React', 'TypeScript', 'Go'],
-    links: [{ label: 'Source', href: 'https://github.com/your-username/personal-site' }],
+    links: [{ label: 'Source', href: 'https://github.com/cadelaney3/chris-delaney' }],
     year: 2026,
   },
   {

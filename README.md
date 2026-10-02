@@ -1,4 +1,4 @@
-# personal-site
+# chris-delaney
 
 Portfolio and blog. A React frontend on GitHub Pages, backed by a small Go API on Fly.io.
 
