@@ -36,6 +36,13 @@ export const projects: Project[] = [
     context: 'Quiq',
   },
   {
+    name: 'Hunt unit ranker',
+    description: "Ranks Montana hunting units by draw odds, harvest success, population, and animal quality. A Python pipeline parses state wildlife agency PDFs and CSVs into one schema (all 422 hunts from the 2026 draw, checked against each report's own totals), and a React + TanStack Table app lets you filter, sort, and drill in. Draw odds come from a model of Montana's bonus-point lottery fitted to each applicant pool.",
+    tech: ['Python', 'React', 'TypeScript', 'TanStack Table'],
+    links: [{ label: 'Source', href: 'https://github.com/cadelaney3/hunt-research' }],
+    context: 'Personal · 2026',
+  },
+  {
     name: 'Fault-tolerant LLM routing',
     description: 'A cluster-based configuration system with percentage-based traffic routing for evaluating models in production, plus automatic fallbacks with configurable timeouts when a primary model fails or latency spikes.',
     tech: ['Scala', 'Java', 'LLMs'],
@@ -67,7 +74,7 @@ export const projects: Project[] = [
     name: 'Speech & text API benchmarking',
     description: 'A cloud-hosted Flask app comparing text-analytics and audio-transcription APIs from Google, IBM, Microsoft, and Amazon, using multithreaded parallel requests to cut response latency. Containerized and deployed on AWS.',
     tech: ['Python', 'Flask', 'AWS'],
-    links: [],
+    links: [{ label: 'Source', href: 'https://github.com/cadelaney3/projectNAP' }],
     context: 'Xpollin · 2015–2019',
   },
 ]
