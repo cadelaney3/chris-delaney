@@ -38,7 +38,9 @@ Open http://localhost:5173.
 
   Posts are loaded when the API starts, so restart `go run .` (or redeploy) to pick up changes.
 - **Contact messages** are appended to `$DATA_DIR/messages.jsonl` (`api/data/` locally,
-  a Fly volume in production). Read them with `fly ssh console -C "cat /data/messages.jsonl"`.
+  a Fly volume in production). Download them with
+  `fly ssh sftp get /data/messages.jsonl -a personal-site-api-cadelaney3` (the image has no shell
+  tools, so `fly ssh console -C cat ...` won't work).
 
 ## Test
 
