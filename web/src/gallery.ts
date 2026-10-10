@@ -19,7 +19,7 @@ const entries: Photo[] = [
   { slug: 'img-1063', featured: true, caption: 'Bugling before sunrise', alt: 'Silhouette of a hunter blowing an elk bugle against a deep blue pre-dawn sky with a bright planet' },
   { slug: 'img-2927', caption: "Made light work of Lone Peak (I'm actually dying inside)", alt: 'Chris running a dirt road in a race bib, throwing a shaka, with Lone Peak behind' },
   { slug: 'img-0465', caption: 'Night miles', alt: 'Trail runner with a headlamp and running vest climbing a steep forest trail at night beside a rope line' },
-  { slug: 'img-1603', caption: 'Sunrise from the trail', alt: 'Red and orange sunrise over layered forested mountains, seen from a trail through the pines' },
+  { slug: 'img-1603', caption: 'Hiking out in the dark is worth it for sunsets like these', alt: 'Red and orange sunset over layered forested mountains, seen from a trail through the pines' },
   { slug: 'img-0705', caption: 'Backcountry tour after a big storm', alt: 'Chris on skis with poles raised, grinning in deep snow among heavily snow-covered firs' },
   { slug: 'img-1612', caption: 'Bad kitty came way too close', alt: 'A mountain lion half-hidden behind downed logs on a forested hillside with yellow autumn leaves' },
   { slug: 'img-1220', caption: 'Moose in the willows', alt: 'A young moose browsing on bare willow branches in late winter' },
