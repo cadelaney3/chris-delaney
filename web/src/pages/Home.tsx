@@ -5,6 +5,7 @@ import { projects, site } from '../site'
 import { useTitle } from '../useTitle'
 import ProjectCard from '../ProjectCard'
 import ExternalLink from '../ExternalLink'
+import { HeroRidge } from '../Ridgeline'
 
 export default function Home() {
   useTitle()
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <>
       <section className="intro">
+        <HeroRidge />
         <h1>{site.tagline}</h1>
         {site.bio.map((p) => <p key={p}>{p}</p>)}
         <p className="status">

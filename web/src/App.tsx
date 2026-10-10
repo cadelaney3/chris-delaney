@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { NavLink, Route, Routes, useLocation } from 'react-router'
 import { site } from './site'
 import ExternalLink from './ExternalLink'
+import { PeakMark, Treeline } from './Ridgeline'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Blog from './pages/Blog'
@@ -19,7 +20,7 @@ export default function App() {
   return (
     <div className="page">
       <header className="site-header">
-        <NavLink to="/" className="wordmark">{site.name}</NavLink>
+        <NavLink to="/" className="wordmark"><PeakMark />{site.name}</NavLink>
         <nav>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/resume">Resume</NavLink>
@@ -40,6 +41,7 @@ export default function App() {
         </Routes>
       </main>
 
+      <Treeline />
       <footer className="site-footer">
         <span>© {year} {site.name}</span>
         <span className="footer-links">
