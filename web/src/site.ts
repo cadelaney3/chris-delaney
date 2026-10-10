@@ -11,6 +11,8 @@ export const site = {
     'I believe AI is the future of software, both in the process of building software and integrating LLMs into products and product features.',
     "Outside of software, I like to be outside and enjoy all the benefits that come with living in Montana. I'm an avid trail runner, hunter, golfer, and snowboarder. I enjoy pushing my physical and mental limits, doing hard things and learning new tricks and skills to improve in whatever I do.",
   ],
+  // Shows the Writing section (nav link, /blog pages, recent posts on home).
+  showWriting: false,
   status: 'Currently open to new full-stack and AI engineering roles.',
   links: [
     { label: 'GitHub', href: 'https://github.com/cadelaney3' },

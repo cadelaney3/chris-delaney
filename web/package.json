@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
+    "build": "tsc -b && vite build && node scripts/prerender-meta.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "photos": "node scripts/process-photos.mjs"
+    "photos": "node scripts/process-photos.mjs",
+    "og": "node scripts/make-og.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

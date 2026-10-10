@@ -13,7 +13,7 @@ export default function Home() {
   const [posts, setPosts] = useState<PostMeta[] | null>(null)
 
   useEffect(() => {
-    getPosts().then(setPosts).catch(() => setPosts([]))
+    if (site.showWriting) getPosts().then(setPosts).catch(() => setPosts([]))
   }, [])
 
   return (

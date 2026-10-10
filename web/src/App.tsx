@@ -26,7 +26,7 @@ export default function App() {
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/resume">Resume</NavLink>
           <NavLink to="/gallery">Gallery</NavLink>
-          <NavLink to="/blog">Writing</NavLink>
+          {site.showWriting && <NavLink to="/blog">Writing</NavLink>}
           <NavLink to="/contact">Contact</NavLink>
         </nav>
       </header>
@@ -37,8 +37,12 @@ export default function App() {
           <Route path="projects" element={<Projects />} />
           <Route path="resume" element={<Resume />} />
           <Route path="gallery" element={<Gallery />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:slug" element={<PostPage />} />
+          {site.showWriting && (
+            <>
+              <Route path="blog" element={<Blog />} />
+              <Route path="blog/:slug" element={<PostPage />} />
+            </>
+          )}
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
