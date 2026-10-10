@@ -11,7 +11,7 @@ import { createServer } from 'vite'
 
 const root = path.dirname(path.dirname(new URL(import.meta.url).pathname))
 const dist = path.join(root, 'dist')
-const SITE_URL = (process.env.SITE_URL ?? 'https://cadelaney3.github.io/chris-delaney').replace(/\/$/, '')
+const SITE_URL = (process.env.SITE_URL || 'https://chrisdelaney.dev').replace(/\/$/, '')
 
 const vite = await createServer({ root, server: { middlewareMode: true }, appType: 'custom', logLevel: 'error' })
 const { site } = await vite.ssrLoadModule('/src/site.ts')

@@ -1,5 +1,7 @@
 # chris-delaney
 
+https://chrisdelaney.dev
+
 Portfolio and blog. A React frontend on GitHub Pages, backed by a small Go API on Fly.io.
 
 ```
@@ -83,9 +85,11 @@ For deploys on push, add a `FLY_API_TOKEN` repo secret (`fly tokens create deplo
 
 ### Site → GitHub Pages
 
-1. Push to GitHub. Settings → Pages → Source: **GitHub Actions**.
-2. Settings → Secrets and variables → Actions → **Variables**:
-   - `API_URL` = `https://<your-app>.fly.dev`
-   - `BASE_PATH` = `/` if the repo is `<user>.github.io`; otherwise it defaults to `/<repo>/`.
+Settings → Pages → Source: **GitHub Actions**, custom domain `chrisdelaney.dev` (DNS on Cloudflare,
+records set to "DNS only"). Repo variables (Settings → Secrets and variables → Actions → Variables):
+
+- `BASE_PATH` = `/`
+- `SITE_URL` = `https://chrisdelaney.dev` (canonical and link-preview URLs)
+- `API_URL` = `https://api.chrisdelaney.dev` (Fly certificate via `fly certs add`)
 
 Pushes to `main` that touch `web/` redeploy the site; pushes touching `api/` test and redeploy the API.
