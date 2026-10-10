@@ -18,6 +18,9 @@
   --ridge-mid: #9cb09a;
   --ridge-near: #2f5d3a;
   --snow: #fbfaf6;
+  --elk: #a8703c;
+  --deer: #8a5630;
+  --antler: #6b4626;
 
   --display: 'Zilla Slab', 'Rockwell', Georgia, serif;
   --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -46,6 +49,9 @@
     --ridge-mid: #2c4234;
     --ridge-near: #46705a;
     --snow: #a7b3a5;
+    --elk: #a07045;
+    --deer: #88593a;
+    --antler: #cdb78f;
     color-scheme: dark;
   }
 }
@@ -352,7 +358,10 @@ main > section + section { margin-top: 4rem; }
 .ridgeline .mid { fill: var(--ridge-mid); }
 .ridgeline .near { fill: var(--ridge-near); }
 .ridgeline .snow { fill: var(--snow); }
-.ridgeline .animal { fill: var(--ridge-near); stroke: var(--ridge-near); }
+.ridgeline .elk { fill: var(--elk); }
+.ridgeline .deer { fill: var(--deer); }
+.ridgeline .antlers { stroke: var(--antler); }
+.ridgeline .shadow { fill: rgb(0 0 0 / 0.18); }
 .hero-ridge { margin: 0 0 2.25rem; border-radius: 12px; overflow: hidden; background: var(--sky); }
 .treeline { margin-top: 3rem; color: var(--ridge-near); opacity: 0.55; }
 .treeline + .site-footer { border-top: 0; padding-top: 0.75rem; }

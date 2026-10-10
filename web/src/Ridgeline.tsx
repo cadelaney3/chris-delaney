@@ -52,14 +52,14 @@ function snowCaps(pts: Pt[], snowline: number, depth: number) {
 }
 
 const W = 720
-const DEER_X = 262
 const heroGround = (x: number) => 150 + Math.sin(x / 90) * 6 + Math.sin(x / 37) * 3
-const heroPines = pines(W, heroGround, 16, 36, 406, [[DEER_X - 22, DEER_X + 26]])
+const heroPines = pines(W, heroGround, 16, 36, 406)
+// The meadow in front of the treeline, where the elk and deer stand.
+const MEADOW_Y = 173
 const heroGroundPath = `M0 ${heroGround(0)}` + Array.from({ length: 37 }, (_, i) => `L${i * 20} ${heroGround(i * 20).toFixed(1)}`).join('') + `L${W} 180L0 180Z`
 
 const FAR_PTS: Pt[] = [[0, 118], [48, 96], [92, 108], [150, 62], [196, 92], [238, 80], [290, 104], [352, 50], [404, 88], [452, 72], [500, 98], [566, 58], [612, 84], [664, 70], [720, 92]]
-// The 330-352 shoulder is flat so the elk has somewhere to stand.
-const MID_PTS: Pt[] = [[0, 140], [40, 122], [84, 132], [138, 100], [182, 126], [236, 108], [286, 132], [330, 100], [352, 99.5], [392, 124], [446, 110], [494, 134], [552, 102], [604, 128], [660, 112], [720, 126]]
+const MID_PTS: Pt[] = [[0, 140], [40, 122], [84, 132], [138, 100], [182, 126], [236, 108], [286, 132], [340, 98], [392, 124], [446, 110], [494, 134], [552, 102], [604, 128], [660, 112], [720, 126]]
 const FAR = ridgePath(FAR_PTS)
 const MID = ridgePath(MID_PTS)
 const SNOW = snowCaps(FAR_PTS, 65, 13)
@@ -70,11 +70,17 @@ const ELK_ANTLERS = 'M12 6C14 0 18 -6 24 -12M14 1L9 -2M16 -2L12 -7M19 -6L17 -12M
 const DEER_BODY = 'M42 9L46 12L45 14L40 14C38.5 16.5 37 19.5 36.5 22C36 25 35.5 27 34.5 29L34 40L32.5 40L32 30L30.5 30L30 40L28.5 40L28 30L17 30L16.5 40L15 40L14.5 30L13 29.5L12 40L10.5 40L10.5 28C8.5 26 8 23 9 20L7 19L9.5 18C12 15.5 20 15 26 16C29 15.5 32 13 34 10L37 6L36 3L39 6L41 4L40 8Z'
 const DEER_ANTLERS = 'M38 6C38 2 41 -1 44 -2M40 2L39 -2M42 0L43 -4'
 
-function Animal({ body, antlers, x, y, scale, antlerWidth }: { body: string; antlers: string; x: number; y: number; scale: number; antlerWidth: number }) {
+type AnimalProps = { kind: 'elk' | 'deer'; body: string; antlers: string; feetY: number; width: number; x: number; scale: number; antlerWidth: number }
+
+// Places an animal so its feet rest on MEADOW_Y, with a soft shadow beneath.
+function Animal({ kind, body, antlers, feetY, width, x, scale, antlerWidth }: AnimalProps) {
   return (
-    <g className="animal" transform={`translate(${x} ${y}) scale(${scale})`}>
-      <path d={body} />
-      <path d={antlers} fill="none" strokeWidth={antlerWidth} strokeLinecap="round" />
+    <g className={`animal ${kind}`}>
+      <ellipse className="shadow" cx={x + width * scale * 0.55} cy={MEADOW_Y + 0.5} rx={width * scale * 0.42} ry={1.6} />
+      <g transform={`translate(${x} ${MEADOW_Y - feetY * scale}) scale(${scale})`}>
+        <path d={body} />
+        <path className="antlers" d={antlers} fill="none" strokeWidth={antlerWidth} strokeLinecap="round" />
+      </g>
     </g>
   )
 }
@@ -87,12 +93,12 @@ export function HeroRidge() {
         <path className="far" d={FAR} />
         <path className="snow" d={SNOW} />
         <path className="mid" d={MID} />
-        {/* Bull elk on the ridge shoulder, small with distance. */}
-        <Animal body={ELK_BODY} antlers={ELK_ANTLERS} x={334} y={99.5 - 46 * 0.3} scale={0.3} antlerWidth={1.6} />
+
         <path className="near" d={heroGroundPath} />
         <path className="near" d={heroPines} />
-        {/* Buck in a clearing among the pines. */}
-        <Animal body={DEER_BODY} antlers={DEER_ANTLERS} x={DEER_X - 6} y={heroGround(DEER_X + 10) - 40 * 0.52 + 0.5} scale={0.52} antlerWidth={1.4} />
+        {/* A buck and a bull elk out in the meadow, facing each other. */}
+        <Animal kind="deer" body={DEER_BODY} antlers={DEER_ANTLERS} feetY={40} width={46} x={200} scale={0.64} antlerWidth={1.5} />
+        <Animal kind="elk" body={ELK_BODY} antlers={ELK_ANTLERS} feetY={46} width={50} x={420} scale={0.84} antlerWidth={1.7} />
       </svg>
     </div>
   )
