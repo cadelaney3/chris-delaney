@@ -9,6 +9,8 @@ primary_region = "sjc"
   ALLOWED_ORIGINS = "https://chrisdelaney.dev,https://www.chrisdelaney.dev,https://cadelaney3.github.io"
   # Contact-form messages are emailed here (needs the RESEND_API_KEY secret).
   CONTACT_TO = "cadelaney3@gmail.com"
+  # Verified with Resend (DKIM/SPF records on Cloudflare), so mail comes from our own domain.
+  CONTACT_FROM = "Chris Delaney (website) <contact@chrisdelaney.dev>"
 
 [http_service]
   internal_port = 8080
