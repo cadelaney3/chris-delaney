@@ -4,11 +4,12 @@ export const site = {
   name: 'Chris Delaney',
   location: 'Missoula, MT',
   email: 'cadelaney3@gmail.com',
-  tagline: 'Full-stack engineer building fast, fault-tolerant AI products.',
+  tagline: 'Full-stack engineer, AI-driven, always pushing forward.',
   bio: [
-    "I'm a software engineer in Missoula, Montana. For the past seven years at Quiq I've built customer engagement software across React/TypeScript frontends and Scala/Java microservices.",
+    "I'm a software engineer in Missoula, Montana, with a passion for AI-driven engineering. I started my software career as a frontend-focused developer, primarily building React/TypeScript frontends. Over time I expanded my skillset to full-stack development, including building Scala microservices.",
     'Most recently my focus has been AI and LLM infrastructure: a live translation engine that cut 20-message translation times from over 60 seconds to under 5, cluster-based model routing with automatic fallbacks, and serverless AWS Lambda webhooks that feed real-time data to conversational AI agents.',
-    "I care about the people side of engineering too. I've mentored an intern into a full-time engineer and led onboarding and code reviews for new engineers and intern cohorts.",
+    'I believe AI is the future of software, both in the process of building software and integrating LLMs into products and product features.',
+    "Outside of software, I like to be outside and enjoy all the benefits that come with living in Montana. I'm an avid trail runner, hunter, golfer, and snowboarder. I enjoy pushing my physical and mental limits, doing hard things and learning new tricks and skills to improve in whatever I do.",
   ],
   status: 'Currently open to new full-stack and AI engineering roles.',
   links: [
