@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
-import { sendContact } from '../api'
+import { ApiError, sendContact } from '../api'
+import { site } from '../site'
 import { useTitle } from '../useTitle'
 
 type Status = { kind: 'idle' | 'sending' | 'sent' } | { kind: 'error'; message: string }
@@ -23,7 +24,13 @@ export default function Contact() {
       form.reset()
       setStatus({ kind: 'sent' })
     } catch (err) {
-      setStatus({ kind: 'error', message: err instanceof Error ? err.message : 'Something went wrong.' })
+      // Validation and rate-limit errors are worth showing as-is; anything else
+      // (network failure, server error) gets a fallback the visitor can act on.
+      const fixable = err instanceof ApiError && err.status < 500
+      setStatus({
+        kind: 'error',
+        message: fixable ? err.message : `Couldn't send right now. Please email me at ${site.email} instead.`,
+      })
     }
   }
 

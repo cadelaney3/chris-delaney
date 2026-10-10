@@ -30,7 +30,7 @@ func testServer(t *testing.T) (http.Handler, string) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	inbox, err := NewInbox(dataDir)
+	inbox, err := NewInbox(dataDir, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -37,7 +37,8 @@ Open http://localhost:5173.
   ```
 
   Posts are loaded when the API starts, so restart `go run .` (or redeploy) to pick up changes.
-- **Contact messages** are appended to `$DATA_DIR/messages.jsonl` (`api/data/` locally,
+- **Contact messages** are emailed to `CONTACT_TO` via [Resend](https://resend.com) when the
+  `RESEND_API_KEY` secret is set (`fly secrets set RESEND_API_KEY=re_...`). Every message is also appended to `$DATA_DIR/messages.jsonl` (`api/data/` locally,
   a Fly volume in production). Download them with
   `fly ssh sftp get /data/messages.jsonl -a personal-site-api-cadelaney3` (the image has no shell
   tools, so `fly ssh console -C cat ...` won't work).
@@ -58,7 +59,9 @@ cd web && npm run lint && npm run build
 | POST   | `/api/contact`       | `{name, email, message}`, 5/hour/IP  |
 | GET    | `/healthz`           | Health check                         |
 
-Config (env): `PORT`, `CONTENT_DIR`, `DATA_DIR`, `ALLOWED_ORIGINS` (comma-separated).
+Config (env): `PORT`, `CONTENT_DIR`, `DATA_DIR`, `ALLOWED_ORIGINS` (comma-separated),
+`RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` (defaults to Resend's `onboarding@resend.dev`, which
+only delivers to the address the Resend account was created with).
 
 ## Deploy
 

@@ -21,17 +21,19 @@ type ContactMessage struct {
 	Received time.Time `json:"received"`
 }
 
-// Inbox appends messages to a JSON Lines file.
+// Inbox appends messages to a JSON Lines file and, when a notifier is set,
+// forwards each one (e.g. by email). The file is kept as a backup either way.
 type Inbox struct {
-	mu   sync.Mutex
-	path string
+	mu       sync.Mutex
+	path     string
+	notifier Notifier
 }
 
-func NewInbox(dir string) (*Inbox, error) {
+func NewInbox(dir string, notifier Notifier) (*Inbox, error) {
 	if err := os.MkdirAll(dir, 0o755); err != nil {
 		return nil, err
 	}
-	return &Inbox{path: filepath.Join(dir, "messages.jsonl")}, nil
+	return &Inbox{path: filepath.Join(dir, "messages.jsonl"), notifier: notifier}, nil
 }
 
 func (in *Inbox) save(msg ContactMessage) error {
@@ -67,10 +69,26 @@ func (in *Inbox) handleSubmit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if addr, err := mail.ParseAddress(msg.Email); err == nil {
+		msg.Email = addr.Address // drop any display name, e.g. "Ada <ada@x.com>"
+	}
 	msg.Received = time.Now().UTC()
-	if err := in.save(msg); err != nil {
-		slog.Error("saving contact message", "err", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save message"})
+
+	// Either saving or emailing is enough for the message to reach Chris.
+	saveErr := in.save(msg)
+	if saveErr != nil {
+		slog.Error("saving contact message", "err", saveErr)
+	}
+	delivered := saveErr == nil
+	if in.notifier != nil {
+		if err := in.notifier.Notify(r.Context(), msg); err != nil {
+			slog.Error("emailing contact message", "err", err)
+		} else {
+			delivered = true
+		}
+	}
+	if !delivered {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not send message"})
 		return
 	}
 	slog.Info("contact message received", "from", msg.Email)
@@ -81,6 +99,8 @@ func validateContact(msg ContactMessage) string {
 	switch {
 	case msg.Name == "" || len(msg.Name) > 100:
 		return "name is required (max 100 characters)"
+	case strings.ContainsAny(msg.Name, "\r\n"):
+		return "name must be a single line"
 	case len(msg.Email) > 254:
 		return "email is too long"
 	case msg.Message == "" || len(msg.Message) > 5000:

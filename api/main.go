@@ -19,6 +19,9 @@ type config struct {
 	contentDir     string
 	dataDir        string
 	allowedOrigins []string
+	resendAPIKey   string
+	contactTo      string
+	contactFrom    string
 }
 
 func loadConfig() config {
@@ -27,6 +30,11 @@ func loadConfig() config {
 		contentDir:     getenv("CONTENT_DIR", "content/posts"),
 		dataDir:        getenv("DATA_DIR", "data"),
 		allowedOrigins: strings.Split(getenv("ALLOWED_ORIGINS", "http://localhost:5173"), ","),
+		resendAPIKey:   os.Getenv("RESEND_API_KEY"),
+		contactTo:      os.Getenv("CONTACT_TO"),
+		// resend.dev works without verifying a domain, but only delivers to the
+		// address the Resend account was created with.
+		contactFrom: getenv("CONTACT_FROM", "Website contact form <onboarding@resend.dev>"),
 	}
 }
 
@@ -61,7 +69,15 @@ func main() {
 	}
 	slog.Info("loaded posts", "count", len(store.list))
 
-	inbox, err := NewInbox(cfg.dataDir)
+	var notifier Notifier
+	if cfg.resendAPIKey != "" && cfg.contactTo != "" {
+		notifier = &ResendNotifier{APIKey: cfg.resendAPIKey, From: cfg.contactFrom, To: cfg.contactTo}
+		slog.Info("emailing contact messages", "to", cfg.contactTo)
+	} else {
+		slog.Warn("RESEND_API_KEY or CONTACT_TO not set; contact messages are only saved to disk")
+	}
+
+	inbox, err := NewInbox(cfg.dataDir, notifier)
 	if err != nil {
 		slog.Error("opening inbox", "dir", cfg.dataDir, "err", err)
 		os.Exit(1)
