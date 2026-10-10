@@ -1,5 +1,5 @@
 // Turns the originals in src/assets/photos (gitignored: they carry GPS data)
-// into web-sized, metadata-free copies in public/gallery, and records their
+// into web-sized, metadata-free copies in public/photos, and records their
 // dimensions in src/gallery-sizes.json so the grid can reserve space.
 //
 //   npm run photos
@@ -10,7 +10,7 @@ import sharp from 'sharp'
 
 const root = path.dirname(path.dirname(new URL(import.meta.url).pathname))
 const srcDir = path.join(root, 'src/assets/photos')
-const outDir = path.join(root, 'public/gallery')
+const outDir = path.join(root, 'public/photos')
 
 // Photos with black letterbox bars to crop off.
 const TRIM = new Set(['img-7470'])
@@ -53,4 +53,4 @@ for (const file of files) {
 }
 
 await writeFile(path.join(root, 'src/gallery-sizes.json'), JSON.stringify(sizes, null, 2) + '\n')
-console.log(`\n${files.length} photos written to public/gallery`)
+console.log(`\n${files.length} photos written to public/photos`)

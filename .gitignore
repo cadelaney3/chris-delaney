@@ -4,5 +4,5 @@ web/dist/
 web/.env*.local
 api/data/
 
-# Original photos keep their GPS metadata; only processed copies in web/public/gallery are committed.
+# Original photos keep their GPS metadata; only processed copies in web/public/photos are committed.
 web/src/assets/photos/

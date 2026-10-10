@@ -39,7 +39,7 @@ Open http://localhost:5173.
   Posts are loaded when the API starts, so restart `go run .` (or redeploy) to pick up changes.
 - **Gallery photos:** put originals in `web/src/assets/photos/` (gitignored, since phone photos
   carry GPS data), run `cd web && npm run photos`, then add a caption entry to `web/src/gallery.ts`.
-  The script writes resized, metadata-free WebP copies to `web/public/gallery/`, which is what gets
+  The script writes resized, metadata-free WebP copies to `web/public/photos/`, which is what gets
   committed. Mark up to four entries `featured: true` for the home page strip.
 - **Contact messages** are emailed to `CONTACT_TO` via [Resend](https://resend.com) when the
   `RESEND_API_KEY` secret is set (`fly secrets set RESEND_API_KEY=re_...`). Every message is also appended to `$DATA_DIR/messages.jsonl` (`api/data/` locally,

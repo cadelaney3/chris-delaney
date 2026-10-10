@@ -33,7 +33,7 @@ const entries: Photo[] = [
   { slug: 'img-1106', caption: 'My co-worker', alt: 'Selfie of Chris with his German shorthaired pointer sitting beside a desk and laptop' },
 ]
 
-const base = `${import.meta.env.BASE_URL}gallery/`
+const base = `${import.meta.env.BASE_URL}photos/`
 const dims = sizes as Record<string, { w: number; h: number }>
 
 export const photos = entries
