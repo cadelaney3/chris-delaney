@@ -9,6 +9,7 @@ import Blog from './pages/Blog'
 import PostPage from './pages/Post'
 import Contact from './pages/Contact'
 import Resume from './pages/Resume'
+import Gallery from './pages/Gallery'
 import NotFound from './pages/NotFound'
 
 const year = new Date().getFullYear()
@@ -24,6 +25,7 @@ export default function App() {
         <nav>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/resume">Resume</NavLink>
+          <NavLink to="/gallery">Gallery</NavLink>
           <NavLink to="/blog">Writing</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
@@ -34,6 +36,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
           <Route path="resume" element={<Resume />} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<PostPage />} />
           <Route path="contact" element={<Contact />} />

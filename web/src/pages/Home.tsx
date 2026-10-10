@@ -6,6 +6,7 @@ import { useTitle } from '../useTitle'
 import ProjectCard from '../ProjectCard'
 import ExternalLink from '../ExternalLink'
 import { HeroRidge } from '../Ridgeline'
+import TrailStrip from '../TrailStrip'
 
 export default function Home() {
   useTitle()
@@ -39,6 +40,8 @@ export default function Home() {
           {projects.slice(0, 2).map((p) => <ProjectCard key={p.name} project={p} />)}
         </div>
       </section>
+
+      <TrailStrip />
 
       {posts && posts.length > 0 && (
         <section>
