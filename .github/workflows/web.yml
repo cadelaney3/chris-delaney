@@ -36,6 +36,8 @@ jobs:
           VITE_API_URL: ${{ vars.API_URL }}
           # "/" for a <user>.github.io repo; "/<repo>/" otherwise.
           BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+          # Public URL of the site, used for canonical and link-preview tags.
+          SITE_URL: ${{ vars.SITE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist

@@ -2,8 +2,8 @@
 // client-side routes like /projects used to come back as a 404 (rendered by
 // 404.html). This writes a real dist/<route>/index.html for each page, each
 // with its own title, description, and link-preview (Open Graph) tags that
-// crawlers can read without running JavaScript. Also writes sitemap.xml.
-// (robots.txt only works at a domain root, so it waits for a custom domain.)
+// crawlers can read without running JavaScript. Also writes sitemap.xml, and
+// robots.txt when the site is served from a domain root (it's ignored elsewhere).
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -75,5 +75,9 @@ await writeFile(
     .map((p) => `  <url><loc>${SITE_URL}/${p.route ? p.route + '/' : ''}</loc></url>`)
     .join('\n')}\n</urlset>\n`,
 )
+
+if (new URL(SITE_URL).pathname === '/') {
+  await writeFile(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`)
+}
 
 console.log(`prerendered ${pages.length} pages + 404.html and sitemap.xml`)

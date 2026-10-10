@@ -24,7 +24,7 @@ const hero = renderToStaticMarkup(React.createElement(HeroRidge))
 const inner = hero.match(/<svg[^>]*>([\s\S]*)<\/svg>/)[1]
 
 const escape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const url = 'cadelaney3.github.io/chris-delaney'
+const url = (process.env.SITE_URL ?? 'https://chrisdelaney.dev').replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 // Light-theme colors from index.css. Rockwell (macOS) stands in for Zilla Slab.
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
